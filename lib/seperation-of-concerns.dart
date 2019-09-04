@@ -1,13 +1,24 @@
 import 'package:flutter/material.dart';
 
 class ShowCounter extends StatelessWidget {
-  final int counterState;
-  const ShowCounter(this.counterState);
+  final int _counterState;
+  const ShowCounter(this._counterState);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return Text(counterState.toString());
+    return Text(_counterState.toString());
   }
+}
+
+class ButtonToIncrementCounter extends StatelessWidget {
+  final _handleCallback;
+  const ButtonToIncrementCounter(this._handleCallback);
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return RaisedButton(onPressed: _handleCallback, child: Text('click me'));
+  }
+
 }
 
 class IncrementCounter extends StatefulWidget {
@@ -20,18 +31,18 @@ class IncrementCounter extends StatefulWidget {
 }
 
 class CounterState extends State<IncrementCounter> {
-  int counterState = 0;
+  int _counterState = 0;
 
   void _handleTap() {
     setState(() {
-      counterState++;
+      _counterState++;
     });
   }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Row(
-      children: [RaisedButton(onPressed: _handleTap, child: Text('click me')), ShowCounter(counterState)],
+      children: [ButtonToIncrementCounter(_handleTap), ShowCounter(_counterState)],
     );
   }
 }
